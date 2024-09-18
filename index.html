@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IKEA Customer Persona</title>
+</head>
+<body>
+    <h1>IKEA Customer Persona</h1>
+    <p id="name">Name: </p>
+    <p id="age">Age: </p>
+    <p id="location">Location: </p>
+    <p id="preferences">Preferences: </p>
+    <p id="purchases">Frequent Purchases: </p>
+
+    <script>
+        // Example of fetching IKEA customer data from an API
+        const apiKey = 'your_api_key_here';
+        const apiUrl = 'https://api.ikea.com/customer-data';
+
+        async function fetchCustomerData() {
+            try {
+                const response = await fetch(apiUrl, {
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`
+                    }
+                });
+                const data = await response.json();
+                document.getElementById('name').innerText = 'Name: ' + data.name;
+                document.getElementById('age').innerText = 'Age: ' + data.age;
+                document.getElementById('location').innerText = 'Location: ' + data.location;
+                document.getElementById('preferences').innerText = 'Preferences: ' + data.preferences;
+                document.getElementById('purchases').innerText = 'Frequent Purchases: ' + data.purchases;
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        fetchCustomerData();
+    </script>
+</body>
+</html>
